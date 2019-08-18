@@ -1,0 +1,24 @@
+version: '3'
+services:
+  react-app:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:300"
+    volumes:
+      # volumes helps to track changes in the container source code
+      # here we are create volumes 
+      # the first one is saying do not touch the node_modules
+      - /app/node_modules
+      # here we map the current folder to the app folder in the container
+      - .:/app  
+# run another container that runs the test
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm","run", "test"]      
