@@ -6,4 +6,4 @@ before_install:
   - docker build -t lovisgod/react-docker -f Dockerfile.dev .
 
 script:
-  - docker run lovisgod/react-docker npm run test -- --coverage
+  - docker run lovisgod/react-docker npm run test -- --coverage --exit
